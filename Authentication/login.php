@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 include '../db.connect.php';
@@ -39,7 +38,7 @@ if($stmt->num_rows == 1){
         echo "Incorrect password. <a href='login.html'>Try again</a>";
     }
 }else{
-    echo "User not found. <a href=register.html'>Register here</a>";
+    echo "User not found. <a href=register.html>Register here</a>";
 }
 
 $stmt->close();
