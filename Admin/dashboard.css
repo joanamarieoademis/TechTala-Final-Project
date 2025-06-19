@@ -1,0 +1,440 @@
+.contents{
+    margin-left: 290px;
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+}
+
+.dash{
+    font-size: 40px;
+    color: #465F78;
+    margin-right: 30px;
+    text-align: center;
+    padding-top: 20px;
+    margin-bottom: 100px;
+}
+
+.content1 {
+    padding: 20px;
+    justify-content: center;
+    width: 75vw;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+    gap: 10px;
+}
+
+.box {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgb(174, 172, 172);
+    padding: 30px;
+    width: 300px;
+    height: 170px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: 0.3s ease-in-out;
+}
+
+.box:hover {
+    transform: translateY(-10px);
+}
+
+
+.box h1{
+    color: #465F78;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.box h2{
+    color: #333;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.box img {
+    position: absolute;
+    width: 80px;
+    height: 70px;
+    bottom: 15px;
+    right: 15px;
+    opacity: 0.8;
+}
+
+.wrap{
+    display: flex;
+    flex-direction: row;
+}
+
+.view{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.caption{
+    color: #465F78;
+    font-size: 25px;
+    text-align: left;
+    display: inline-block;
+}
+
+.link{
+    text-decoration: none;
+    background-color: #465F78;
+    color: white;
+    padding: 8px 18px;
+    border-radius: 5px;
+}
+
+.content2 {
+    padding: 20px;
+    margin-bottom: 40px;
+    margin-left: 300px
+}
+
+.post-mgt{
+    text-align: left;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    width: 50vw;
+    height: 10vh;
+}
+
+.post-mgt button{
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.post-mgt button:hover{
+    opacity: 0.5;
+}
+
+.post-mgt .edit, .delete{
+    background-color: #fff;
+}
+
+.post-mgt  img{
+    width: 25px;
+}
+
+.content3 {
+    padding: 20px;
+    margin-bottom: 40px;
+}
+
+.content3 h4{
+    color: #465F78;
+    font-size: 25px;
+    text-align: left;
+    display: inline-block;
+    margin-right: 70px;
+}
+
+.content3 a{
+    text-align: right;
+    text-decoration: none;
+    background-color: #465F78;
+    color: white;
+    padding: 8px 18px;
+    display: inline-block;
+    border-radius: 10px;
+}
+
+.users{
+    border-collapse: collapse;
+    width: 25vw;
+    height: 10vh;
+    text-align: left;
+}
+
+.users img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ccc;
+}
+
+.users .btn{
+    background-color: #fff;
+    border:none
+}
+
+.users  img{
+    width: 25px;
+}
+
+.users button:hover{
+    opacity: 0.5;
+}
+
+.table th, td{
+    padding: 12px 15px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+}
+
+.table th{
+    background-color: #465F78;
+    color: white;
+}
+
+
+.table{
+    max-height: 450px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.table::-webkit-scrollbar{
+    height: 8px;
+    width: 8px;
+}
+
+.table::-webkit-scrollbar-thumb{
+    background-color: #e6e3e3;
+    border-radius: 4px;
+}
+
+.table tr th{
+    position: sticky;
+    top: 0;
+}
+
+@media screen and (max-width: 1280px){
+    .box {
+        width: 270px;
+    }
+
+    .content3{
+        padding: 20px;
+        margin-bottom: 40px;
+        margin-left: 300px
+}
+}
+
+@media screen and (max-width: 1225px){
+    .content h1{
+        margin-left: 100px;
+    }
+
+    .wrap{
+        flex-direction: column;
+    }
+
+    .post-mgt, .users{
+        width: 100%;
+    }
+
+    .post-mgt img, .users img{
+        width: 20px;
+    }
+
+    .users{
+        width: 100%;
+    }
+
+    .box {
+        width: 230px;
+    }
+}
+
+
+@media screen and (max-width: 960px) {
+    .contents{
+        margin-left: 10px;
+    }
+
+    .content1 {
+        padding: 0px;
+        width: 95vw;
+        gap: 10px;
+    }
+
+    .box {
+        padding: 20px;
+        width: 220px;
+        height: 150px;
+    }
+
+    .content2 {
+        margin-top: 20px;
+        margin-left: 10px
+    }
+
+    .content3 {
+        margin-left: 10px
+    }
+
+    .box img {
+        width: 50px;
+        height: 50px;
+
+    }
+
+    .box-user{
+        width: 250px;
+    }
+
+    .wrap{
+        flex-direction: column;
+    }
+
+    .post-mgt  button{
+        padding: 3px 5px;
+    }
+
+    .users img{
+        width: 60px;
+        height: 60px;
+    }
+
+}
+
+@media screen and (max-width: 820px){
+    .dash {
+        font-size: 32px;
+        padding: 10px 0;
+    }
+
+    .s-box{
+        width: 30%;
+    }
+    
+    .box {
+        width: 200px;
+    }
+
+    .box h1{
+        font-size: 20px;
+    }
+
+    .box h2{
+        font-size: 25px;
+    }
+
+    .post-mgt  button{
+        padding: 0px 0px;
+    }
+}
+
+@media screen and (max-width: 660px){
+    .content1 {
+        padding: 0px;
+    }
+
+    .content2 {
+        padding: 0px;
+        margin-bottom: 0px;
+    }
+
+    .box {
+        width: 170px;
+        height:130px;
+    }
+
+    .box img {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .post-mgt, .users, th, td{
+        font-size: 14px;
+    }
+
+    .post-mgt  img{
+        width: 15px;
+    }
+
+    .users img{
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media screen and (max-width: 560px){
+    .dash {
+        font-size: 22px;
+        padding: 10px 0;
+    }
+
+    .box {
+        width: 25vw;
+        height:60px;
+        padding: 10px;
+    }
+
+    .box h1{
+        font-size: 14px;
+        margin-bottom: 0px;
+    }
+
+    .box h2{
+        font-size: 15px;
+    }
+
+    .box img {
+        width: 20px;
+        height: 20px;
+        bottom: 5px;
+    }
+
+    .content2 {
+        padding: 0px;
+        margin-bottom: 0px;
+    }
+
+    .content2 h4, .content3 h4{
+        font-size: 17px;
+        margin-bottom: 15px;
+        margin-right: 100px;
+    }
+
+    .content2 a, .content3  a{
+        padding: 5px 10px;
+        font-size: 13px;
+    }
+
+    .table th, td {
+        padding: 7px 10px;
+        border: none;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .post-mgt  img, .users img{
+        width: 15px;
+    }
+
+    .table{
+        overflow-x: auto;
+    }
+
+    .table::-webkit-scrollbar{
+        height: 4px;
+        width: 4px;
+    }
+
+    .s-box{
+        width: 40%;
+    }
+    
+    .s-image{
+        width: 17px;
+    }
+
+    .users img{
+        width: 25px;
+        height: 25px;
+    }
+    
+}
