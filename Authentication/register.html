@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="image/logo.png">
+    <link rel="stylesheet" href="register.css">
+    <title>TechTala</title>
+</head>
+<body>
+    <nav>
+        <div>
+            <img class="logo" src="image/logo.png" alt="Error">
+             <a href="homepage.html"><h3 id="title">TechTala</h3></a>
+        </div>
+    </nav>
+
+    <div class="form">
+        <form action="register.php" method="post" class="formmm">
+            <h1>Sign Up</h1>
+            <h3 id="sign">Express. Connect. Inspire.</h3>
+            <p id="word">At TechTala, we believe every voice matters and every story has the potential to change someone's world. </p>
+
+            <hr> <br>
+
+            <div class="input">
+                <input type="text" class="input-box" name="username" placeholder="Username" required> <br><br> 
+                <input type="email" class="input-box" name="email" placeholder="Email" required> <br><br>
+                <input type="password" class="input-box" name="pass" placeholder="Passsword" required> <br><br>
+            </div>
+ 
+            <select class="user-role" name="role" id="role" required>
+                <option value="">User Role</option>
+                <option value="reader">Reader</option>
+                <option value="author">Author</option>
+                <option value="admin">Admin</option>
+
+            </select> <br><br>
+
+            <button class="register" name="register"><b>Register</b></button>
+           
+            <hr>
+
+            <p>Already have an account?</p>
+            <button class="login" onclick="document.location='login.html'"><b>Log In</b></button>
+
+        </form>     
+    </div>
+ 
+</body>
+</html>
