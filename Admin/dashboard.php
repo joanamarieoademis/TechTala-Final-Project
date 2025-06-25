@@ -12,29 +12,39 @@ if (!isset($_SESSION['user_id'])) {
 
 // Get dashboard stats
 function dashboard() {
-    $users = selectAll('users');
-    // Only count authors and readers
+    $users = selectAll('users', ['deleted' => 0]); // Ignore deleted users
     $users = array_filter($users, function($user) {
         return isset($user['role']) && ($user['role'] === 'author' || $user['role'] === 'reader');
     });
-    $usersCount = count($users);
 
-    $posts = selectAll('post');
-    $postsCount = count($posts);
-
+    $posts = selectAll('post', ['deleted' => 0]); // Ignore deleted posts
     $comments = selectAll('comments');
-    $commentsCount = count($comments);
 
     return [
-        'users' => $usersCount,
-        'posts' => $postsCount,
-        'comments' => $commentsCount
+        'users' => count($users),
+        'posts' => count($posts),
+        'comments' => count($comments)
     ];
 }
 
+function post() {
+    global $conn;
+    $sql = "SELECT p.id AS post_id, p.title, p.created_at, p.status, p.deleted, u.username
+            FROM post p
+            LEFT JOIN users u ON p.users_id = u.id
+            WHERE p.deleted = 0
+            ORDER BY p.created_at DESC";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
+
+
 // Get functions 
 $stats = dashboard();
-$posts = posts();     
+$posts = post();     
 $users = users();     
 $roles = role('');
 
