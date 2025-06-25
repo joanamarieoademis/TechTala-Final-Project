@@ -55,6 +55,7 @@ $posts = posts();
                     <th>Title</th>
                     <th>Author</th>
                     <th>Date</th>
+                    <th>Status</th>
                     <th>Action</th>
                 </tr>
                 <?php if (empty($posts)): ?>
@@ -65,31 +66,39 @@ $posts = posts();
                     </tr>
                 <?php else: ?>
                     <?php foreach ($posts as $post): ?>
-                        <tr>
-                            <td class="post-title">
-                                <?= htmlspecialchars($post['title']) ?></td>
-                                <td><?= htmlspecialchars($post['username'] ?? 'Unknown') ?></td>
-                                <td><?= date('F j, Y', strtotime($post['created_at'])) ?></td>                            
-                            </td>
-                            
+                        <tr style="<?= $post['deleted'] ? : '' ?>">
+                            <td class="post-title"><?= htmlspecialchars($post['title']) ?></td>
+                            <td><?= htmlspecialchars($post['username'] ?? 'Unknown') ?></td>
+                            <td><?= date('F j, Y', strtotime($post['created_at'])) ?></td>
                             <td>
-                                <div class="action-buttons">
-                                    <!-- Viewing page see the authors blogs -->
-                                    <a href="view.php?id=<?php echo $post['post_id']; ?>" class="edit">
-                                        <img src="image/file.png" alt="Edit">
-                                    </a>
-
-                                    <!-- Deleting a post -->
-                                    <form method="POST" class="delete-form" onsubmit="return confirm('Are you sure you want to delete this post?');">
-                                        <input type="hidden" name="post" value="<?= $post['post_id'] ?>">
-                                        <button type="submit" name="delete" class="delete">
-                                            <img src="image/delete.png" alt="Delete">
-                                        </button>
-                                    </form>
-                                </div>
+                                <?php if ($post['deleted']): ?>
+                                    <span style="color:rgb(242, 37, 37);">Deleted</span>
+                                <?php else: ?>
+                                    <span style="color: <?= $post['status'] === 'published' ? '#2ecc71' : '#f39c12' ?>">
+                                        <?= ucfirst($post['status']) ?>
+                                    </span>
+                                <?php endif; ?>
+                            </td>
+                            <td>
+                                <?php if (!$post['deleted']): ?>
+                                    <div class="action-buttons">
+                                        <a href="view.php?id=<?= $post['post_id']; ?>" class="edit">
+                                            <img src="image/file.png" alt="View">
+                                        </a>
+                                        <form method="POST" class="delete-form" onsubmit="return confirm('Are you sure you want to delete this post?');">
+                                            <input type="hidden" name="post" value="<?= $post['post_id'] ?>">
+                                            <button type="submit" name="delete" class="delete">
+                                                <img src="image/delete.png" alt="Delete">
+                                            </button>
+                                        </form>
+                                    </div>
+                                <?php else: ?>
+                                    <em style="color: #999;">No actions available</em>
+                                <?php endif; ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>
+
                     <?php endif;?>
             </table>
         </div>

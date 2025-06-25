@@ -13,9 +13,11 @@
     padding: 100px 50px;
     position: relative;
 }
+
 .main-search {
     display: none;
 }
+
 .cont1::before {
     content: "";
     position: absolute;
@@ -110,6 +112,7 @@
     flex-wrap: wrap;
     gap: 35px;
     justify-content: center;
+    padding: 0 10px;
 }
 
 .post-box {
@@ -121,9 +124,8 @@
     height: auto;
     display: flex;
     flex-direction: column;
-    transition: 0.5s;
+    transition: transform 0.5s;
     position: relative;
-    cursor: pointer;
 }
 
 .post-box:hover {
@@ -136,6 +138,10 @@
     transition: color 0.3s ease;
     font-size: 27px;
     padding-left: 17px;
+}
+
+.post-title:hover {
+    color:rgb(49, 82, 115);
 }
 
 .post-details {
@@ -189,13 +195,6 @@
 .art-post:hover {
     transform: translateX(10px);
 }
-
-/* .art-post-image {
-    width: 150px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 5px;
-} */
 
 .art-post-image {
     width: 150px;

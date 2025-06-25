@@ -38,6 +38,7 @@ if (isset($_SESSION['user_id'])) {
             </div>
                     <div class="sub-menu">
                         <a href="profile.php">Profile</a>
+                        <a href="drafts.php">Drafts</a>
                         <a href="comments.php">Comments</a>
                         <a href="logout.php">Logout</a>
                     </div>

@@ -9,8 +9,10 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 // Get all posts
-$posts = selectAll('post', []);
-
+$posts = selectAll('post', ['status' => 'published']);
+$posts = array_filter($posts, function($post) {
+    return empty($post['deleted']) || $post['deleted'] == 0;
+});
 // Get all comments for all posts
 $comments = selectAll('comments', []);
 

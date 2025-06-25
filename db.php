@@ -131,20 +131,27 @@ function update($table, $id, $data) {
 
 function delete($table, $id){
     global $conn;
-    
-    $sql = "DELETE FROM $table WHERE id = ?";
+
+    $sql = "UPDATE $table SET deleted = 1 WHERE id = ?";
     
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('i', $id);
     $stmt->execute();
-    
+
     return $stmt->affected_rows;
 }
+
 
 // Get posts -- admin 
 function posts() {
     global $conn;
-    $sql = "SELECT p.id AS post_id, p.title, p.created_at, u.username
+    $sql = "SELECT 
+                p.id AS post_id, 
+                p.title, 
+                p.created_at, 
+                p.status, 
+                p.deleted, 
+                u.username
             FROM post p
             LEFT JOIN users u ON p.users_id = u.id
             ORDER BY p.created_at DESC";
@@ -156,20 +163,25 @@ function posts() {
 }
 
 
+
 // Get users -- admin
 function users() {
     global $conn;
-    $sql = "SELECT 
-                u.id AS user_id, u.username, u.email, u.role, 
-                u.gender, u.bio, u.profile_picture, u.created_at,
-                COALESCE(p.post_count, 0) AS post_count,
-                COALESCE(c.comment_count, 0) AS comment_count
+    $sql = "SELECT u.*, 
+                   (SELECT COUNT(*) FROM post WHERE users_id = u.id) AS post_count,
+                   (SELECT COUNT(*) FROM comments WHERE users_id = u.id) AS comment_count
             FROM users u
-            LEFT JOIN (SELECT users_id, COUNT(*) AS post_count FROM post GROUP BY users_id) p ON u.id = p.users_id
-            LEFT JOIN (SELECT users_id, COUNT(*) AS comment_count FROM comments GROUP BY users_id) c ON u.id = c.users_id
-            ORDER BY u.created_at DESC";
-    return $conn->query($sql)->fetch_all(MYSQLI_ASSOC);
+            WHERE u.status = 'active'";  // Filter only active users (optional)
+
+    $result = $conn->query($sql);
+
+    if (!$result) {
+        die("Database query error: " . $conn->error);  // Display the actual SQL error
+    }
+
+    return $result->fetch_all(MYSQLI_ASSOC);
 }
+
 
 // Get user role -- admin
 function role($role) {

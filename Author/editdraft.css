@@ -1,0 +1,167 @@
+nav{
+    background-color: #2C3E50;
+}
+
+.container {
+    background-color: white;
+    max-width: 800px;
+    margin: 100px auto;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+
+label {
+    display: block;
+    margin: 15px 0 5px;
+    color: #2C3E50;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    line-height: 1.5;
+    font-size: 16px;
+}
+
+textarea {
+    height: 20vh;
+    resize: vertical;
+    margin-top: 20px;
+}
+
+.buttons {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.buttons button {
+    border-radius: 10px;
+    width: 100px;
+    height: 30px;
+    color: #ccc;
+    padding: 5px 10px;
+    background-color: #2e3a59;
+    font-weight: bolder;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.buttons #bold{
+    font-weight: bold;
+}
+
+.buttons #italic{
+    font-style: italic;
+}
+
+.buttons #underline{
+    text-decoration: underline;
+}
+
+.buttons button:hover{
+    opacity: 0.9;
+}
+
+
+.preview {
+    border: 1px dashed #aaa;
+    padding: 10px;
+    margin-top: 15px;
+    background: #f9f9f9;
+    line-height: 1.5;
+}
+
+
+#fileUpload{
+    display: none;
+}
+
+.upload-box {
+    background-color: none;
+    text-align: center;
+    font-weight: bold;
+    padding: 30px;
+    margin-top: 10px;
+    color: #2C3E50;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid #3333;
+}
+
+.upload-box img {
+    margin-top: 10px;
+    border-radius: 4px;
+    max-width: 100%;
+    max-height: 200px;
+}
+
+.actions {
+    margin-top: 20px;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.actions .publish {
+    background-color: #5bc0de;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.actions .draft {
+    background-color: #ee3030;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.actions .publish:hover{
+    opacity: 0.9;
+}
+
+.actions .draft:hover{
+    opacity: 0.9;
+}
+
+
+
+@media screen and (max-width:650px) {
+    .container{
+        margin: 100px 20px;
+    }
+
+    .buttons {
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .buttons button{
+        font-size: 14px;
+    }
+}
+
+@media screen and  (max-width: 400px) {
+    .actions .draft,
+    .actions .publish {
+        width: 50%;
+    }
+    
+}

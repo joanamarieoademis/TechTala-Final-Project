@@ -12,19 +12,19 @@ if (!isset($_SESSION['user_id'])) {
 
 $table  = 'post';
 
-if (isset($_POST['publish'])) {
+if (isset($_POST['publish']) || isset($_POST['draft'])) {
     $title = $_POST['title'];
-    // Use the formatted content instead of plain content
     $content = $_POST['format'] ?? $_POST['content'];
     $username = $_SESSION['username'] ?? 'guest'; 
     $users_id = $_SESSION['user_id'] ?? 0;
-
+    $status = isset($_POST['publish']) ? 'published' : 'draft'; // Set post status
 
     $post = [
         'title' => $title,
         'content' => $content, 
         'username' => $username,
-        'users_id' => $users_id
+        'users_id' => $users_id,
+        'status' => $status
     ];
 
     if (!empty($_FILES['fileUpload']['name'])) {
@@ -32,20 +32,23 @@ if (isset($_POST['publish'])) {
         $image_name = $users_id . '_' . $title . '.' . $file_extension;
         $destination = 'images/' . $image_name;
 
-        // Saving of image
         if (move_uploaded_file($_FILES['fileUpload']['tmp_name'], $destination)) {
             $post['image'] = $image_name;
         } else {
             $errors[] = "Failed to upload image.";
         }
-    } else {
-        $errors[] = "Post image is required";
+    } elseif ($status === 'published') {
+        $errors[] = "Post image is required for published posts";
     }
 
     if (empty($errors)) {
         $post_id = create($table, $post);
         if ($post_id) {
-            header('Location: http://localhost/TechTala/Author/homepage.php');
+            if ($status === 'draft') {
+                header('Location: http://localhost/TechTala/Author/drafts.php');
+            } else {
+                header('Location: http://localhost/TechTala/Author/homepage.php');
+            }
             exit();
         } else {
             echo "Error: Failed to create post";
@@ -61,7 +64,7 @@ if (isset($_POST['publish'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechTala</title>
     <link rel="icon" href="image/logo.png">
-    <link rel="stylesheet" href="create_newblog.css">
+    <link rel="stylesheet" href="create_newblogs.css">
 </head>
 <body>
     
@@ -98,7 +101,9 @@ if (isset($_POST['publish'])) {
 
             <div class="actions">
                 <button type="submit" name="publish" class="publish">Publish Post</button>
+                <button type="submit" name="draft" class="draft">Save as Draft</button>
             </div>
+
         </form>
     </div>
 

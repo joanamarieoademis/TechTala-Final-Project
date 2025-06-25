@@ -11,11 +11,18 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 // user deletion handler
-if (isset($_POST['delete'])) {
+if (isset($_POST['toggle'])) {
     $user_id = (int)$_POST['user'];
-    $delete = delete('users', $user_id);
-    $alert = $delete > 0 ? "User deleted successfully!" : "Failed to delete user.";
-    $alert_type = $delete > 0 ? 'success' : 'error';
+    $current_status = (int)$_POST['status'];
+    $new_status = $current_status === 1 ? 0 : 1;
+
+    $sql = "UPDATE users SET deleted = ? WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ii", $new_status, $user_id);
+    $stmt->execute();
+
+    $alert = $stmt->affected_rows > 0 ? "User status updated!" : "Failed to update user.";
+    $alert_type = $stmt->affected_rows > 0 ? 'success' : 'error';
 }
 
 // calling the users and role function
@@ -30,7 +37,7 @@ $roles = role('');
     <meta charset="UTF-8">
     <title>TechTala</title>
     <link rel="icon" href="../image/logo.png">
-    <link rel="stylesheet" href="users.css">
+    <link rel="stylesheet" href="user.css">
 </head>
 <body>
     <?php include("header.php") ?>
@@ -54,6 +61,8 @@ $roles = role('');
                 <div class="no-users">No users found in the database.</div>
             <?php else: ?>
                 <?php foreach ($users as $user): ?>
+                    <?php if ($user['role'] === 'admin') continue; ?>
+
                     <div class="box-user">
                         <div id="<?= role($user['role']) ?>">
 
@@ -86,10 +95,15 @@ $roles = role('');
                                 </div>
                             <?php endif; ?>
 
-                            <form method="POST"  class="delete-form" onsubmit="return confirm('Delete this user and all their posts/comments?');">
-                                <input type="hidden" name="user" value="<?= $user['user_id'] ?>">
-                                <button type="submit" name="delete" class="user-delete">Delete</button>
-                            </form>
+                            <form method="POST" class="delete-form" onsubmit="return confirm('Change user status?');">
+                                <input type="hidden" name="user" value="<?= $user['id'] ?>">
+                                <input type="hidden" name="status" value="<?= $user['deleted'] ?>">
+                                <button type="submit" name="toggle" class="user-toggle"
+                                    style="background-color: <?= $user['deleted'] ? '#2ecc71' : '#e74c3c' ?>;">
+                                    <?= $user['deleted'] ? 'Activate' : 'Deactivate' ?>
+                                </button>
+                        </form>
+
                         </div>
                     </div>
                 <?php endforeach; ?>

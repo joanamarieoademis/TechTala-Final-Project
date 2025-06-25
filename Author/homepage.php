@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $table = 'post';
-$posts = selectAll($table);
+$posts = selectAll($table, ['status' => 'published', 'deleted' => 0]);
 
 usort($posts, function($a, $b) {
     return strtotime($b['created_at']) - strtotime($a['created_at']);
@@ -19,7 +19,7 @@ usort($posts, function($a, $b) {
 $articles = $posts;
 
 $user_id = $_SESSION['user_id'];
-$own_articles = selectAll('post', ['users_id' => $user_id]);
+$own_articles = selectAll('post', ['users_id' => $user_id, 'status' => 'published', 'deleted' => 0]);
 
 if (!empty($own_articles)) {
     shuffle($own_articles);

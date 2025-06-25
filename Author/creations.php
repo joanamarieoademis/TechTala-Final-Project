@@ -13,7 +13,7 @@ if (!isset($_SESSION['user_id'])) {
 $table = 'post';
 $user_id = $_SESSION['user_id'];
 
-$conditions = ['users_id' => $user_id];
+$conditions = ['users_id' => $user_id, 'deleted' => 0];
 $own_articles = selectAll($table, $conditions);
 
 if (!empty($own_articles)) {
@@ -28,11 +28,13 @@ if (isset($_GET['deletePost'])) {
     $posts = selectOne('post', ['id' => $delete_id]);
 
     if ($posts && $posts['users_id'] == $user_id) {
-        delete('post', $delete_id);
+        // Soft delete
+        update('post', $delete_id, ['deleted' => 1]);
         header("Location: creations.php"); 
         exit();
     } 
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +44,7 @@ if (isset($_GET['deletePost'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechTala</title>
     <link rel="icon" href="image/logo.png">
-    <link rel="stylesheet" href="creation.css">
+    <link rel="stylesheet" href="creations.css">
 </head>
 <body>
     

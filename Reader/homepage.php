@@ -14,6 +14,7 @@ $featuredQuery = "
     SELECT p.*, COUNT(c.id) AS comment_count 
     FROM post p 
     LEFT JOIN comments c ON p.id = c.post_id 
+    WHERE p.status = 'published' AND (p.deleted = 0)
     GROUP BY p.id 
     ORDER BY comment_count DESC, p.created_at DESC 
     LIMIT 1
@@ -22,12 +23,23 @@ $featuredStmt = executeQuery($featuredQuery, []);
 $featuredPost = $featuredStmt->get_result()->fetch_assoc();
 
 // Get latest 6 articles
-$latestPostsQuery = "SELECT * FROM post ORDER BY created_at DESC LIMIT 6";
+$latestPostsQuery = "
+    SELECT * 
+    FROM post 
+    WHERE status = 'published' AND (deleted = 0) 
+    ORDER BY created_at DESC 
+    LIMIT 6
+";
 $latestStmt = executeQuery($latestPostsQuery, []);
 $latestPosts = $latestStmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
 // Get all posts randomly
-$allPostsQuery = "SELECT * FROM post ORDER BY RAND()";
+$allPostsQuery = "
+    SELECT * 
+    FROM post 
+    WHERE status = 'published' AND (deleted = 0) 
+    ORDER BY RAND()
+";
 $allPostsStmt = executeQuery($allPostsQuery, []);
 $allPosts = $allPostsStmt->get_result()->fetch_all(MYSQLI_ASSOC);
 ?>
@@ -91,6 +103,7 @@ $allPosts = $allPostsStmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
         <main class="main-content">
             <!-- Top 6 recent articles -->
+            <div class="boxes">
             <h1 class="title">Latest Articles</h1>
             <div class="post-container">
                 <?php if (!empty($latestPosts)): ?>
@@ -156,6 +169,7 @@ $allPosts = $allPostsStmt->get_result()->fetch_all(MYSQLI_ASSOC);
                         </div>
                     </a>
                 <?php endif; ?>
+            </div>
             </div>
         </main>
     </div>

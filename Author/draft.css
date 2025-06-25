@@ -1,0 +1,213 @@
+nav{
+    background-color: #2C3E50;
+}
+
+.contents{
+    padding: 20px;
+    margin: 50px;
+}
+
+.cont2{
+    margin-bottom: 60px;
+    position: relative;
+    margin-top: 20px;
+}
+
+.cont2 h1{
+    text-align: center;
+    font-size: 40px;
+    color: #2C3E50;
+    font-weight: bold;
+}
+
+.boxes{
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 35px;
+    justify-content: center;
+}
+
+
+.recents {
+    margin-top: 10px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgb(174, 172, 172);
+    width: 350px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.5s;
+    position: relative;
+}
+
+.recents:hover {
+    transform: translateY(-5px);
+}
+
+.recents img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.recents h2 a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease;
+    font-size: 27px;
+    padding-left: 17px;
+}
+
+.recents h2 a:hover {
+    color:rgb(49, 82, 115);
+}
+
+.recents p{
+    padding: 5px 20px 20px 20px;
+    color: #555;
+    line-height: 1.5;
+    margin-top: 10px;
+}
+
+.recents .author {
+    margin-top: auto;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    font-size: 13px;
+    margin-bottom: 30px;
+    margin-left: 16px;
+}
+
+span{
+    position: absolute;
+    bottom: 10px;
+    left: 15px;
+    font-size: 12px;
+    color: #888;
+    font-style: italic;
+    padding-top: 30px; 
+    margin-top: 20px;
+}
+
+.no{
+    margin-left: 100px;
+}
+
+
+small{
+    text-align: center;
+}
+
+.alert.success {
+    color: green;
+    background: #e6ffee;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-left: 5px solid green;
+}
+
+.alert.error {
+    color: red;
+    background: #ffe6e6;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-left: 5px solid red;
+}
+
+.delete-button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+
+}
+
+.delete-button:hover {
+    background-color: #c0392b;
+}
+
+.draft-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #eee;
+    padding: 10px 16px;
+    margin-top: auto;
+    font-size: 13px;
+    gap: 10px;
+}
+
+
+@media screen and (max-width: 875px) {
+
+    .contents {
+        padding: 10px;
+        margin: 10px;
+    }
+    
+    .boxes{
+        margin-top: 30px;
+    }
+    
+    .recents {
+        width: 275px;
+    }
+    
+    .recents h2, .dra h2{
+        font-size: 20px;
+    }
+    
+    .recents p, .dra p{
+        font-size: 14px;
+    }
+    
+    .recents img{
+        border-radius: 5px;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    nav .logo{
+        width:40px;
+    }
+
+    h3{
+        font-size: 14px;
+        margin-left: 50px;
+    }
+    
+    .content h1{
+        font-size: 30px;
+    }
+
+    .recents p,
+    .dra p, .button a{
+        font-size: 14px;
+    }
+
+    .contents {
+        padding: 10px;
+        margin: 10px;
+    }
+    
+    .cont1 {
+        gap: 25px;
+    }
+
+    .recents {
+        width: 300px;
+    }
+    
+    .recents h2, .dra h2{
+        font-size: 18px;
+    }
+    
+    .recents img{
+        border-radius: 5px;
+    }
+}

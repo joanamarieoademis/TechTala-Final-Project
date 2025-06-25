@@ -126,7 +126,7 @@ foreach ($comments as $c) {
 function displayCommentsList($tree, $parent_id = null, $level = 0, $commentsById = []) {
     if (empty($tree[$parent_id])) return;
     foreach ($tree[$parent_id] as $comment) {
-        $postUrl = "postpage.php?id=" . urlencode($comment['post_id']) . "#comment-" . $comment['id'];
+        $postUrl = "view.php?id=" . urlencode($comment['post_id']) . "#comment-" . $comment['id'];
         // Reply
         $isReply = !empty($comment['parent_id']) && isset($commentsById[$comment['parent_id']]);
         $marginLeft = $isReply ? 0 : ($level * 30);
@@ -184,7 +184,7 @@ function displayCommentsList($tree, $parent_id = null, $level = 0, $commentsById
             <ul>
                 <?php
                 foreach ($comments as $comment) {
-                    $postUrl = "postpage.php?id=" . urlencode($comment['post_id']) . "#comment-" . $comment['id'];
+                    $postUrl = "view.php?id=" . urlencode($comment['post_id']) . "#comment-" . $comment['id'];
                     // Reply
                     $isReply = !empty($comment['parent_id']) && isset($commentsById[$comment['parent_id']]);
                     echo '<li style="cursor:pointer;" onclick="window.location.href=\'' . $postUrl . '\'">';

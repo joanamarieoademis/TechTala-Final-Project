@@ -133,7 +133,7 @@ function displayComments($tree, $comments, $level = 0) {
             <?php else: ?>
                 <img src="image/type.avif" alt="">
             <?php endif; ?>
-            <div>
+            <div  class="content">
                 <?php echo $post['content']; ?>
             </div>
             <h4><?php echo htmlspecialchars($post['username']); ?></h4>

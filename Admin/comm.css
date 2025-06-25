@@ -1,0 +1,188 @@
+* {
+    margin-top: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+nav{
+    background-color: #2C3E50;
+}
+
+.main {
+    max-width: 800px;
+    margin: 0px auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px #5a5959;
+}
+
+.main .contents img {
+    width: 100%;
+    height: auto;
+    max-height: 800px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+.main .contents h1 {
+    font-size: 40px;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.main .contents p {
+    line-height: 1.5;
+    color: #333;
+    text-align: justify;
+}
+
+.main .contents h4 {
+    margin-top: 20px;
+    font-weight: 600;
+    font-size: 18px;
+    color: #555;
+}
+
+.main .contents span {
+    display: block;
+    color: #777;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.main .comments {
+    margin-top: 10px;
+    padding-top: 20px;
+}
+
+.main .comments h2 {
+    font-size: 25px;
+    margin-bottom: 10px;
+    margin-top: 30px;
+    color: #333;
+}
+
+.main .comm strong {
+    display: block;
+    margin-top: 10px;
+    color: #111;
+    padding-top: 10px;
+}
+
+.main .comm p {
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.main .c-section {
+    margin-top: 30px;
+}
+
+.main .c-section label span {
+    font-weight: 600;
+    color: #333;
+}
+
+.main .c-section #type-comment {
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 8px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.main .post{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.main .post button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #2C3E50;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.main .post  button:hover {
+    opacity: 0.9;
+}
+
+.content{
+    /* font-size: 20px; */
+}
+
+@media (max-width: 768px) {
+    .main {
+        margin: 40px 20px;
+        padding: 20px;
+    }
+
+    .contents h1 {
+        font-size: 32px;
+    }
+
+    .contents p {
+        font-size: 15px;
+    }
+
+    .contents img {
+        width: 100%;
+    }
+
+    .comments h2 {
+        font-size: 22px;
+    }
+
+    .c-section #type-comment {
+        font-size: 15px;
+    }
+
+    button {
+        font-size: 15px;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 460px) {
+    .main {
+        margin: 30px 10px;
+        padding: 15px;
+    }
+
+    .contents h1 {
+        font-size: 26px;
+    }
+
+    .contents h4 {
+        font-size: 18px;
+    }
+
+    .contents p {
+        font-size: 14px;
+    }
+
+    .contents span {
+        font-size: 13px;
+    }
+
+    .comments h2 {
+        font-size: 20px;
+    }
+
+    .c-section #type-comment {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 7px 14px;
+    }
+}
