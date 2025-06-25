@@ -13,14 +13,18 @@ if (!isset($_SESSION['user_id'])) {
 // Get dashboard stats
 function dashboard() {
     $users = selectAll('users');
+    // Only count authors and readers
+    $users = array_filter($users, function($user) {
+        return isset($user['role']) && ($user['role'] === 'author' || $user['role'] === 'reader');
+    });
     $usersCount = count($users);
-    
+
     $posts = selectAll('post');
     $postsCount = count($posts);
-    
+
     $comments = selectAll('comments');
     $commentsCount = count($comments);
-    
+
     return [
         'users' => $usersCount,
         'posts' => $postsCount,
@@ -33,6 +37,11 @@ $stats = dashboard();
 $posts = posts();     
 $users = users();     
 $roles = role('');
+
+// Filter out admins
+$users = array_filter($users, function($user) {
+    return isset($user['role']) && ($user['role'] === 'author' || $user['role'] === 'reader');
+});
 ?>
 
 <!DOCTYPE html>

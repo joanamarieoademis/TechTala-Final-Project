@@ -29,6 +29,11 @@ if (isset($_POST['toggle'])) {
 $users = users();
 $roles = role('');
 
+// Filter out admins
+$users = array_filter($users, function($user) {
+    return isset($user['role']) && ($user['role'] === 'author' || $user['role'] === 'reader');
+});
+
 ?>
 
 <!DOCTYPE html>
